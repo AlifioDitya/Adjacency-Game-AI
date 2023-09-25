@@ -14,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * The OutputFrameController class.  It controls button input from the users when
@@ -172,7 +173,7 @@ public class OutputFrameController {
      */
     private void selectedCoordinates(int i, int j){
         // Invalid when a button with an X or an O is clicked.
-        if (!this.buttons[i][j].getText().equals(""))
+        if (!this.buttons[i][j].getText().isEmpty())
             new Alert(Alert.AlertType.ERROR, "Invalid coordinates: Try again!").showAndWait();
         // Button must be blank.
         else {
@@ -353,11 +354,20 @@ public class OutputFrameController {
     }
 
     private void moveBot() {
-        int[] botMove = this.bot.move();
+        // GridPane board to char[][] board
+        char[][] board = new char[8][8];
+        for (int i = 0; i < this.buttons.length; i++) {
+            for (int j = 0; j < this.buttons[i].length; j++) {
+                board[i][j] = this.buttons[i][j].getText().isEmpty() ? '.' : this.buttons[i][j].getText().charAt(0);
+            }
+        }
+
+        int[] botMove = this.bot.move(board);
+        System.out.println("Bot move: " + Arrays.toString(botMove));
         int i = botMove[0];
         int j = botMove[1];
 
-        if (!this.buttons[i][j].getText().equals("")) {
+        if (!this.buttons[i][j].getText().isEmpty()) {
             new Alert(Alert.AlertType.ERROR, "Bot Invalid Coordinates. Exiting.").showAndWait();
             System.exit(1);
             return;
