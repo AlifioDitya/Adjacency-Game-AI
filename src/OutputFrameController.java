@@ -1,3 +1,4 @@
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -56,7 +57,7 @@ public class OutputFrameController {
 
     private static final int ROW = 8;
     private static final int COL = 8;
-    private Button[][] buttons = new Button[ROW][COL];
+    private final Button[][] buttons = new Button[ROW][COL];
 
 
     /**
@@ -89,7 +90,7 @@ public class OutputFrameController {
 
     /**
      * Construct the 8x8 game board by creating a total of 64 buttons in a 2
-     * dimensional array, and construct the 8x2 score board for scorekeeping
+     * dimensional array, and construct the 8x2 score board for score keeping
      * and then initialize turn and score.
      *
      */
@@ -373,6 +374,14 @@ public class OutputFrameController {
             return;
         }
 
-        this.selectedCoordinates(i, j);
+        // Update the UI asynchronously
+        Platform.runLater(() -> {
+            try {
+                Thread.sleep(250);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            this.selectedCoordinates(i, j);
+        });
     }
 }

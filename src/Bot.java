@@ -6,7 +6,7 @@ public class Bot {
     public static final char EMPTY = '.';
     public static final char X_PLAYER = 'X';
     public static final char O_PLAYER = 'O';
-    public static final int MAX_DEPTH = 4;
+    public static final int MAX_DEPTH = 5;
 
     private char[][] board;
 
