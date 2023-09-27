@@ -89,8 +89,8 @@ public class OutputFrameController {
 
 
     /**
-     * Construct the 8x8 game board by creating a total of 64 buttons in a 2
-     * dimensional array, and construct the 8x2 score board for score keeping
+     * Construct the 8x8 game board by creating a total of 64 buttons in a 2-dimensional
+     * array, and construct the 8x2 score board for score keeping
      * and then initialize turn and score.
      *
      */
@@ -198,7 +198,7 @@ public class OutputFrameController {
                     this.endOfGame();
                 }
 
-                // Bot's turn
+                // Bots turn
                 this.moveBot();
             }
             else {
