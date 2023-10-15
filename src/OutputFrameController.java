@@ -71,7 +71,7 @@ public class OutputFrameController {
      * @param isBotFirst True if bot is first, false otherwise.
      *
      */
-    void getInput(String name1, String name2, String rounds, boolean isBotFirst){
+    void getInput(String name1, String name2, String rounds, boolean isBotFirst, String botType){
         this.playerXName.setText(name1);
         this.playerOName.setText(name2);
         this.roundsLeftLabel.setText(rounds);
@@ -79,7 +79,16 @@ public class OutputFrameController {
         this.isBotFirst = isBotFirst;
 
         // Start bot
-        this.bot = new Bot();
+        if (botType.equals("MiniMax")) {
+            this.bot = new MinMaxBot();
+        } else if (botType.equals("Local Search")) {
+            this.bot = new LocalSearchBot();
+        } else if (botType.equals("Genetic Algorithm")) {
+            // this.bot = new GeneticBot();
+            this.bot = new MinMaxBot();
+        } else {
+            throw new RuntimeException("Invalid bot type: " + botType);
+        }
         this.playerXTurn = !isBotFirst;
         if (this.isBotFirst) {
             this.moveBot();
