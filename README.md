@@ -17,40 +17,21 @@ To get started, please install the latest version of the Java Development Kit (J
 
 <hr>
 
-### Deployment (IntelliJ)
-1. Clone the repository through Git by running the following command:<br>
-`git clone https://github.com/GAIB20/adversarial-adjacency-strategy-game.git`, or simply download the repository.
-2. Open the repository folder through IntelliJ.
-3. Set up the JDK by going to File -> Project Structure -> Project tab. In the Project tab, go to Project SDK, click New, and browse to the location of your JDK folder.
-4. NOTE: JavaFX has been removed starting from JDK 11, and it is now a standalone module. The JavaFX files needed to set up the Adjacency program are located in the repository folder itself. To set it up, go to File -> Project Structure -> Libraries tab.  In the Libraries tab, press the + button, browse to the "javafx-sdk/lib" folder in the repository, and add it to the list of libraries.
-5. IMPORTANT: Go to Run -> Edit Configurations, and go to the VM options. In this line, please add in the full path to the lib folder of the javafx-sdk folder on your own computer, and then add the following line <br> `--add-modules=javafx.controls,javafx.fxml`.<br><br> 
-For example, I added the following line to my VM options: `--module-path "C:\Jed's Work\CS Side Projects\Adjacency-Strategy-Game\javafx-sdk\lib" --add-modules=javafx.controls,javafx.fxml`
-6. Open the Main class in the IntelliJ file interface.
-
-<hr>
-
-### Deployment (Linux / WSL Windows 11 without IntelliJ)
-Seharusnya bisa untuk windows non wsl jg (untested), dengan cara skip poin 2, dan ubah semua `/` di command jadi `\`
-
+### Installation
 0. Make sure you have JDK 11 installed
 1. Clone the repo and cd to the folder
+``` bash
+$ git clone https://github.com/AlifioDitya/Adjacency-Game-AI.git
+$ cd adjacency-game-ai
 ```
-git clone https://github.com/GAIB20/adversarial-adjacency-strategy-game.git
-cd adversarial-adjacency-strategy-game
+2. Run the program
+For Linux/MacOS
+``` bash
+$ ./run.sh
 ```
-2. Download JavaFX linux version
-```
-wget https://download2.gluonhq.com/openjfx/11.0.2/openjfx-11.0.2_linux-x64_bin-sdk.zip
-unzip openjfx-11.0.2_linux-x64_bin-sdk.zip
-mv javafx-sdk-11.0.2 javafx-sdk-linux
-```
-3. Compile the program
-```
-javac -cp ./src --module-path "./javafx-sdk-21/lib" --add-modules=javafx.controls,javafx.fxml src/*.java
-```
-4. Run the program
-```
-java -cp ./src --module-path "./javafx-sdk-21/lib" --add-modules=javafx.controls,javafx.fxml Main
+For Windows
+``` bash
+$ ./run.bat
 ```
 
 <hr>
@@ -58,6 +39,7 @@ java -cp ./src --module-path "./javafx-sdk-21/lib" --add-modules=javafx.controls
 ### Program Instructions
 1. Run the Main class to load the program, and the input window below will pop up. Input the names of Player (X) and Bot (O) into their respective text fields.
 Then, select the number of rounds (a number between 2 and 28) to play using the dropdown menu.
+Also select the algorithm of the bot you want to play against.
 You can make the Bot start first.
 <br><br><kbd>
 <img src="https://github.com/ahnjedid/Adjacency-Strategy-Game/blob/master/screenshots/inputScreen.png"></kbd>
@@ -75,10 +57,5 @@ You can make the Bot start first.
 <ul>
   <li>Built with <a href="https://openjfx.io/">JavaFX</a></li>
   <li>Modified by ITB Graphics and AI Lab Assistant 2020</li>
+  <li>Finalized by Group 13 & 57 of IF3170 Artificial Intelligence course project</li>
 </ul>
-
-
-
-
-
-
