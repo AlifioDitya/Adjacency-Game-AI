@@ -59,3 +59,25 @@ You can make the Bot start first.
   <li>Modified by ITB Graphics and AI Lab Assistant 2020</li>
   <li>Finalized by Group 13 & 57 of IF3170 Artificial Intelligence course project</li>
 </ul>
+
+<hr>
+
+### Contributors
+1. Enrique Alifio Ditya (13521142)
+2. Ariel Jovananda (13421086)
+3. M. Zulfiansyah Bayu Pratama (13521028)
+4. Jauza Lathifah Annassalafi (13521030)
+
+<hr>
+
+### Task Distribution
+| Task | Type | Contributors |
+| --- | --- | --- |
+| Environment | Code | Enrique Alifio Ditya |
+| Minimax | Code | Enrique Alifio Ditya |
+| Local Search | Code | Enrique Alifio Ditya |
+| Genetic Algorithm | Code | Ariel Jovananda |
+| Introduction | Report | Jauza Lathifah Annassalafi |
+| Minimax | Report | M. Zulfiansyah Bayu Pratama |
+| Local Search | Report | Jauza Lathifah Annassalafi |
+| Genetic Algorithm | Report | Ariel Jovananda, M. Zulfiansyah Bayu Pratama |
