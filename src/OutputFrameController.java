@@ -253,13 +253,6 @@ public class OutputFrameController {
                     this.endOfGame();       // Determine & announce the winner.
                 }
 
-                // this.roundsLeft--;
-                // this.roundsLeftLabel.setText(String.valueOf(this.roundsLeft));
-                
-                // if (this.roundsLeft == 0) {
-                //     this.endOfGame();
-                // }
-
                 if (this.bot != null) {
                     this.moveBot(1);
                 }
