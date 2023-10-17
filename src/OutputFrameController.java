@@ -51,8 +51,9 @@ public class OutputFrameController {
     private int playerXScore;
     private int playerOScore;
     private int roundsLeft;
-    private boolean isBotFirst;
+    private boolean isOFirst;
     private Bot bot;
+    private Bot bot2;
 
 
     private static final int ROW = 8;
@@ -68,31 +69,49 @@ public class OutputFrameController {
      * @param name1 Name of Player 1 (Player).
      * @param name2 Name of Player 2 (Bot).
      * @param rounds The number of rounds chosen to be played.
-     * @param isBotFirst True if bot is first, false otherwise.
+     * @param isOFirst True if bot is first, false otherwise.
      *
      */
-    void getInput(String name1, String name2, String rounds, boolean isBotFirst, String botType){
+    void getInput(String name1, String name2, String rounds, boolean isOFirst, String botType, String botType2){
         this.playerXName.setText(name1);
         this.playerOName.setText(name2);
         this.roundsLeftLabel.setText(rounds);
         this.roundsLeft = Integer.parseInt(rounds);
-        this.isBotFirst = isBotFirst;
+        this.isOFirst = isOFirst;
 
         // Start bot
         if (botType.equals("MiniMax")) {
-            this.bot = new MinMaxBot();
+            this.bot = new MinMaxBot('X');
         } else if (botType.equals("Local Search")) {
-            this.bot = new LocalSearchBot();
+            this.bot = new LocalSearchBot('X');
         } else if (botType.equals("Genetic Algorithm")) {
             // this.bot = new GeneticBot();
-            this.bot = new MinMaxBot();
+            this.bot = new MinMaxBot('X');
         } else {
-            throw new RuntimeException("Invalid bot type: " + botType);
+            this.bot = null;
         }
-        this.playerXTurn = !isBotFirst;
-        if (this.isBotFirst) {
-            this.moveBot();
+
+        // Start bot2
+        if (botType2.equals("MiniMax")) {
+            this.bot2 = new MinMaxBot('O');
+        } else if (botType2.equals("Local Search")) {
+            this.bot2 = new LocalSearchBot('O');
+        } else if (botType2.equals("Genetic Algorithm")) {
+            // this.bot2 = new GeneticBot();
+            this.bot2 = new MinMaxBot('O');
+        } else {
+            this.bot2 = null;
         }
+
+        this.playerXTurn = !isOFirst;
+        
+        if (this.playerXTurn && this.bot != null) {
+            this.moveBot(1);
+        } else if (!this.playerXTurn && this.bot2 != null) {
+            this.moveBot(2);
+        }
+
+        // Else, wait for user input
     }
 
 
@@ -131,7 +150,13 @@ public class OutputFrameController {
                 // the selected coordinates method with its i and j coordinates.
                 final int finalI = i;
                 final int finalJ = j;
-                this.buttons[i][j].setOnAction(event -> this.selectedCoordinates(finalI, finalJ));
+
+                if (this.bot != null && this.bot2 != null) {
+                    this.buttons[i][j].setDisable(true);
+                } else {
+                    this.buttons[i][j].setOnAction(event -> this.selectedCoordinates(finalI, finalJ));
+                }
+
             }
         }
 
@@ -172,8 +197,6 @@ public class OutputFrameController {
         this.playerOScore = 4;
     }
 
-
-
     /**
      * Process the coordinates of the button that the user selected on the game board.
      *
@@ -198,17 +221,19 @@ public class OutputFrameController {
                 this.updateGameBoard(i, j);
                 this.playerXTurn = false;         // Alternate player's turn.
 
-                if (isBotFirst) {
+                if (isOFirst) {
                     this.roundsLeft--; // Decrement the number of rounds left after both Player X & Player O have played.
                     this.roundsLeftLabel.setText(String.valueOf(this.roundsLeft));
                 }
 
-                if (isBotFirst && this.roundsLeft == 0) {
+                if (isOFirst && this.roundsLeft == 0) {
                     this.endOfGame();
                 }
 
                 // Bots turn
-                this.moveBot();
+                if (this.bot2 != null) {
+                    this.moveBot(2);
+                }
             }
             else {
                 this.playerXBoxPane.setStyle("-fx-background-color: #90EE90; -fx-border-color: #D3D3D3;");
@@ -219,13 +244,24 @@ public class OutputFrameController {
                 this.updateGameBoard(i, j);
                 this.playerXTurn = true;
 
-                if (!isBotFirst) {
+                if (!isOFirst) {
                     this.roundsLeft--; // Decrement the number of rounds left after both Player X & Player O have played.
                     this.roundsLeftLabel.setText(String.valueOf(this.roundsLeft));
                 }
 
-                if (!isBotFirst && this.roundsLeft == 0) { // Game has terminated.
+                if (!isOFirst && this.roundsLeft == 0) { // Game has terminated.
                     this.endOfGame();       // Determine & announce the winner.
+                }
+
+                // this.roundsLeft--;
+                // this.roundsLeftLabel.setText(String.valueOf(this.roundsLeft));
+                
+                // if (this.roundsLeft == 0) {
+                //     this.endOfGame();
+                // }
+
+                if (this.bot != null) {
+                    this.moveBot(1);
                 }
             }
         }
@@ -363,7 +399,7 @@ public class OutputFrameController {
         primaryStage.show();
     }
 
-    private void moveBot() {
+    private void moveBot(int botNum) {
         // GridPane board to char[][] board
         char[][] board = new char[8][8];
         for (int i = 0; i < this.buttons.length; i++) {
@@ -372,7 +408,13 @@ public class OutputFrameController {
             }
         }
 
-        int[] botMove = this.bot.move(board);
+        int[] botMove;
+        if (botNum == 2 && this.bot2 != null) {
+            botMove = this.bot2.move(board);
+        } else {
+            botMove = this.bot.move(board);
+        }
+
         System.out.println("Bot move: " + Arrays.toString(botMove));
         int i = botMove[0];
         int j = botMove[1];
@@ -385,12 +427,12 @@ public class OutputFrameController {
 
         // Update the UI asynchronously
         Platform.runLater(() -> {
-            try {
-                Thread.sleep(250);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            this.selectedCoordinates(i, j);
+                try {
+                    Thread.sleep(250);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                this.selectedCoordinates(i, j);
         });
     }
 }

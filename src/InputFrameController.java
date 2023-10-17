@@ -22,7 +22,7 @@ import java.io.IOException;
  */
 public class InputFrameController{
 
-    public CheckBox isBotFirst;
+    public CheckBox isOFirst;
     @FXML
     private TextField player1;
 
@@ -34,6 +34,9 @@ public class InputFrameController{
 
     @FXML
     private ComboBox<String> algorithmChoice;
+
+    @FXML
+    private ComboBox<String> algorithmChoice2;
 
 
     /**
@@ -51,9 +54,14 @@ public class InputFrameController{
         this.numberOfRounds.getSelectionModel().select(0);
 
         ObservableList<String> algorithmChoiceDropdown = FXCollections.observableArrayList(
-                "", "MiniMax", "Local Search");
+                "", "Human", "MiniMax", "Local Search");
         this.algorithmChoice.setItems(algorithmChoiceDropdown);
         this.algorithmChoice.getSelectionModel().select(0);
+
+        ObservableList<String> algorithmChoiceDropdown2 = FXCollections.observableArrayList(
+                "", "Human", "MiniMax", "Local Search");
+        this.algorithmChoice2.setItems(algorithmChoiceDropdown2);
+        this.algorithmChoice2.getSelectionModel().select(0);
     }
 
 
@@ -68,6 +76,7 @@ public class InputFrameController{
         this.player2.setText("");
         this.numberOfRounds.getSelectionModel().select(0);
         this.algorithmChoice.getSelectionModel().select(0);
+        this.algorithmChoice2.getSelectionModel().select(0);
     }
 
 
@@ -80,7 +89,7 @@ public class InputFrameController{
      */
     @FXML
     private void play() throws IOException{
-        if (this.isInputFieldValidated()){
+        if (this.isInputFieldValidated()) {
             // Close primary stage/input frame.
             Stage primaryStage = (Stage) this.player1.getScene().getWindow();
             primaryStage.close();
@@ -90,7 +99,7 @@ public class InputFrameController{
 
             // Get controller of output frame and pass input including player names and number of rounds chosen.
             OutputFrameController outputFC = loader.getController();
-            outputFC.getInput(this.player1.getText(), this.player2.getText(), this.numberOfRounds.getValue(), this.isBotFirst.isSelected(), this.algorithmChoice.getValue());
+            outputFC.getInput(this.player1.getText(), this.player2.getText(), this.numberOfRounds.getValue(), this.isOFirst.isSelected(), this.algorithmChoice.getValue(), this.algorithmChoice2.getValue());
 
             // Open the new frame.
             Stage secondaryStage = new Stage();
@@ -134,6 +143,11 @@ public class InputFrameController{
         }
 
         if (this.algorithmChoice.getValue().equals("")){
+            new Alert(Alert.AlertType.ERROR, "Algorithm dropdown menu is blank.").showAndWait();
+            return false;
+        }
+
+        if (this.algorithmChoice2.getValue().equals("")){
             new Alert(Alert.AlertType.ERROR, "Algorithm dropdown menu is blank.").showAndWait();
             return false;
         }
