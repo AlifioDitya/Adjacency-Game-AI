@@ -80,8 +80,8 @@ NOTE: This process is counted as 1 round (Player and Bot both taking their turns
 | Environment | Code | Enrique Alifio Ditya |
 | Minimax | Code | Enrique Alifio Ditya |
 | Local Search | Code | Enrique Alifio Ditya |
-| Genetic Algorithm | Code | Ariel Jovananda |
-| Introduction | Report | Jauza Lathifah Annassalafi |
+| Genetic Algorithm | Code | M. Zulfiansyah Bayu Pratama |
+| Introduction | Report | Enrique Alifio Ditya |
 | Minimax | Report | M. Zulfiansyah Bayu Pratama |
-| Local Search | Report | Jauza Lathifah Annassalafi |
+| Local Search | Report | Ariel Jovananda, Jauza Lathifah Annassalafi |
 | Genetic Algorithm | Report | Ariel Jovananda, M. Zulfiansyah Bayu Pratama |
