@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-// Local search using hill climbing with sideways move
+// Local search using hill climbing
 public class LocalSearchBot extends Bot {
     private char type = X_PLAYER;
     private char opp = O_PLAYER;
@@ -51,8 +51,7 @@ public class LocalSearchBot extends Bot {
                 board[neighbor[0]][neighbor[1]] = this.opp;
             }
 
-            // Allows sideways move
-            if (score >= bestScore) {
+            if (score > bestScore) {
                 bestScore = score;
                 bestMove = move;
             }
