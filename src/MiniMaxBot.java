@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class MinMaxBot extends Bot {
+public class MiniMaxBot extends Bot {
     public static final int MAX_DEPTH = 5;
     private char type = X_PLAYER;
     private char opp = O_PLAYER;
 
-    public MinMaxBot(char type) {
+    public MiniMaxBot(char type) {
         super();
         this.type = type;
         this.opp = type == X_PLAYER ? O_PLAYER : X_PLAYER;

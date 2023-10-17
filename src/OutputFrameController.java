@@ -81,24 +81,24 @@ public class OutputFrameController {
 
         // Start bot
         if (botType.equals("MiniMax")) {
-            this.bot = new MinMaxBot('X');
+            this.bot = new MiniMaxBot('X');
         } else if (botType.equals("Local Search")) {
             this.bot = new LocalSearchBot('X');
         } else if (botType.equals("Genetic Algorithm")) {
             // this.bot = new GeneticBot();
-            this.bot = new MinMaxBot('X');
+            this.bot = new MiniMaxBot('X');
         } else {
             this.bot = null;
         }
 
         // Start bot2
         if (botType2.equals("MiniMax")) {
-            this.bot2 = new MinMaxBot('O');
+            this.bot2 = new MiniMaxBot('O');
         } else if (botType2.equals("Local Search")) {
             this.bot2 = new LocalSearchBot('O');
         } else if (botType2.equals("Genetic Algorithm")) {
             // this.bot2 = new GeneticBot();
-            this.bot2 = new MinMaxBot('O');
+            this.bot2 = new MiniMaxBot('O');
         } else {
             this.bot2 = null;
         }
