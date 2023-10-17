@@ -1,6 +1,6 @@
 # Adversarial Adjacency-Strategy-Game
 <kbd>
-  <img src="https://github.com/ahnjedid/Adjacency-Strategy-Game/blob/master/screenshots/gamePlay.png">
+  <img src="./screenshots/gamePlay.png">
 </kbd>
 
 <hr>
@@ -39,16 +39,16 @@ $ ./run.bat
 ### Program Instructions
 1. Run the Main class to load the program, and the input window below will pop up. Input the names of Player (X) and Bot (O) into their respective text fields.
 Then, select the number of rounds (a number between 2 and 28) to play using the dropdown menu.
-Also select the algorithm of the bot you want to play against.
-You can make the Bot start first.
+Also select the algorithm for the X and O players to use. The options are Human, Minimax, Local Search, and Genetic Algorithm.
+You can make the O Player start first.
 <br><br><kbd>
-<img src="https://github.com/ahnjedid/Adjacency-Strategy-Game/blob/master/screenshots/inputScreen.png"></kbd>
+<img src="./screenshots/inputScreen.png"></kbd>
 <br><br>
 2. Click Play, and the gameboard and scoreboard window will load. Player (X) starts the game by clicking on an empty button. Any adjacent O’s will change to X's as a result. 
 3. Then, Bot (O) has their turn by also clicking on an empty button. Any adjacent X’s will change to O's as a result. NOTE: This process is counted as 1 round (Player and Bot both taking their turns).
 4. The game will continue until there are no more rounds left to play. In the end, the player with the greater number of letters is the winner of the game.
 <kbd>
-  <img src="https://github.com/ahnjedid/Adjacency-Strategy-Game/blob/master/screenshots/endOfGame.png">
+  <img src="./screenshots/endOfGame.png">
 </kbd>
 
 <hr>
