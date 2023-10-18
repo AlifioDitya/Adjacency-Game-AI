@@ -85,7 +85,7 @@ public class OutputFrameController {
         } else if (botType.equals("Local Search")) {
             this.bot = new LocalSearchBot('X');
         } else if (botType.equals("Genetic Algorithm")) {
-            this.bot = new GeneticBot(type:'X');
+            this.bot = new GeneticBot('X');
             // this.bot = new MiniMaxBot('X');
         } else {
             this.bot = null;
@@ -97,7 +97,7 @@ public class OutputFrameController {
         } else if (botType2.equals("Local Search")) {
             this.bot2 = new LocalSearchBot('O');
         } else if (botType2.equals("Genetic Algorithm")) {
-            this.bot2 = new GeneticBot(type:'O');
+            this.bot2 = new GeneticBot('O');
             // this.bot2 = new MiniMaxBot('O');
         } else {
             this.bot2 = null;
