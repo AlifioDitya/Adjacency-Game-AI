@@ -120,7 +120,19 @@ public class GeneticBot extends Bot {
     }
 
     public int evaluate() {
-        return 0;
+        int countSelf = 0;
+        int countOpp = 0;
+        for (int x = 0; x < BOARD_SIZE; x++) {
+            for (int y = 0; y < BOARD_SIZE; y++) {
+                if (board[x][y] == this.type) {
+                    countSelf++;
+                } else if (board[x][y] == this.opp) {
+                    countOpp++;
+                }
+            }
+        }
+
+        return countSelf - countOpp;
     }
 
     public int[] move(char[][] board) {
